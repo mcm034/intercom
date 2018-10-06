@@ -9,6 +9,8 @@ CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
+
+# Número de puerto
 PORT = 50000
 
 def transmitter(HOST):
