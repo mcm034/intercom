@@ -119,7 +119,7 @@ def main():
                     input=True,
                     frames_per_buffer=CHUNK)
 
-    #He puesto el bucle para que se vaya leyendo, aplicando la transformada y enviando después
+    #He puesto el bucle para que se vaya leyendo, aplicando la transformada, detransformada y reproduciendo después
     #Sin hacer lo de "un único chunk", debería valer así
     
     while True:
