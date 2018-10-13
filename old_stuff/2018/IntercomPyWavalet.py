@@ -120,7 +120,7 @@ def main():
                     frames_per_buffer=CHUNK)
 
     #He puesto el bucle para que se vaya leyendo, aplicando la transformada, detransformada y reproduciendo después
-    #Sin hacer lo de "un único chunk", debería valer así
+    #Sin hacer lo de "un único chunk", si no se complicaría bastante
     
     while True:
         data = stream.read(CHUNK)
