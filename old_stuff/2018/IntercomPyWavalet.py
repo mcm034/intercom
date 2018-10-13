@@ -15,12 +15,13 @@ import pywt as wt
 from ctypes import c_int32
 import time
 
-RECORD_SECONDS = 5
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-RATE = 1024
+RATE = 44100
 VALORES = 32
 ITERACIONESDWT = 9
+CHUNK = 1024
 
 
 #Transformada obtiene un array de datos. Realiza la transformada y separa los datos. Cada bloque 32 bits
@@ -118,13 +119,16 @@ def main():
                     input=True,
                     frames_per_buffer=CHUNK)
 
+    #He puesto el bucle para que se vaya leyendo, aplicando la transformada y enviando después
+    #Sin hacer lo de "un único chunk", debería valer así
+    
     while True:
         data = stream.read(CHUNK)
         frames = arraySecuencial(data)
         diciPlanos = Transformada(frames)
         print("\nResultado: ")
         dest = deTransformada(diciPlanos)
-        stream.write(data)
+        stream.write(dest)
 
 if __name__ == '__main__':
     main()
