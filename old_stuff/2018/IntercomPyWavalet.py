@@ -112,23 +112,29 @@ def arraySecuencial(data):
 #Solicitamos direccion IP del host
 def main():
    
-    p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT,
+	p = pyaudio.PyAudio()
+	stream = p.open(format=FORMAT,
+		            channels=CHANNELS,
+		            rate=RATE,
+		            input=True,
+		            frames_per_buffer=CHUNK)
+
+	stream1 = p.open(format=FORMAT,
                     channels=CHANNELS,
                     rate=RATE,
-                    input=True,
-                    frames_per_buffer=CHUNK)
+                    output=True,
+					frames_per_buffer=CHUNK)
 
     #He puesto el bucle para que se vaya leyendo, aplicando la transformada, detransformada y reproduciendo después
     #Sin hacer lo de "un único chunk", si no se complicaría bastante. No se si esto satisface el issue
-    
-    while True:
-        data = stream.read(CHUNK)
-        frames = arraySecuencial(data)
-        diciPlanos = Transformada(frames)
-        print("\nResultado: ")
-        dest = deTransformada(diciPlanos)
-        stream.write(dest)
+
+	while True:
+		data = stream.read(CHUNK)
+		frames = arraySecuencial(data)
+		diciPlanos = Transformada(frames)
+		print("\nResultado: ")
+		dest = deTransformada(diciPlanos)
+		stream1.write(dest)
 
 if __name__ == '__main__':
     main()
