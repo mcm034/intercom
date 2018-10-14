@@ -134,7 +134,7 @@ def main():
 		diciPlanos = Transformada(frames)
 		print("\nResultado: ")
 		dest = deTransformada(diciPlanos)
-		stream1.write(dest)
+		stream1.write(data)
 
 if __name__ == '__main__':
     main()
